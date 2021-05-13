@@ -6,9 +6,11 @@
 /*   By: avan-ber <avan-ber@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/05/12 18:36:54 by avan-ber      #+#    #+#                 */
-/*   Updated: 2021/05/12 22:56:55 by abelfrancis   ########   odam.nl         */
+/*   Updated: 2021/05/13 13:46:05 by avan-ber      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "philo_one.h"
 
 int				ft_isdigit(char c)
 {
@@ -23,7 +25,10 @@ int				ft_isnumber(char *str)
 	while (str[i] != '\0')
 	{
 		if (ft_isdigit(str[i]) == 0)
+		{
+			printf("char: %c\n", str[i]);
 			return (0);
+		}
 		i++;
 	}
 	return (1);

@@ -6,7 +6,7 @@
 /*   By: avan-ber <avan-ber@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/05/12 18:19:29 by avan-ber      #+#    #+#                 */
-/*   Updated: 2021/05/12 22:54:07 by abelfrancis   ########   odam.nl         */
+/*   Updated: 2021/05/13 14:25:46 by avan-ber      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,15 @@ typedef struct		s_philo
 int				ft_isdigit(char c);
 unsigned int    ft_atoui(char *str);
 int             ft_isnumber(char* str);
+
+/*
+** error messages
+*/
+
+int error_argument_amount();
+int error_argument_numbers(int index, char* arg);
+int error_philo_amount();
+int error_time_to_low(char* time);
+int error_amount_to_eat_zero();
 
 #endif
