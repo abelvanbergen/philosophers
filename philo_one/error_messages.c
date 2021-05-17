@@ -6,7 +6,7 @@
 /*   By: avan-ber <avan-ber@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/05/13 13:59:08 by avan-ber      #+#    #+#                 */
-/*   Updated: 2021/05/13 14:33:31 by avan-ber      ########   odam.nl         */
+/*   Updated: 2021/05/17 14:22:56 by avan-ber      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,5 +50,19 @@ int error_amount_to_eat_zero()
 	printf("Error -----\n");
 	printf("You need to eat at least once.");
 	printf("You can't think on a emty stomach\n");
+	return (1);
+}
+
+int error_malloc_failed()
+{
+	printf("Error -----\n");
+	printf("Malloc failed\n");
+	return (1);
+}
+
+int error_mutex_failed()
+{
+	printf("Error -----\n");
+	printf("Mutex failed\n");
 	return (1);
 }
