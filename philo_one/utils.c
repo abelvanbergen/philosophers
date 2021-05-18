@@ -5,12 +5,38 @@
 /*                                                     +:+                    */
 /*   By: avan-ber <avan-ber@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2021/05/12 18:36:54 by avan-ber      #+#    #+#                 */
-/*   Updated: 2021/05/13 13:46:05 by avan-ber      ########   odam.nl         */
+/*   Created: 2021/05/18 13:06:42 by avan-ber      #+#    #+#                 */
+/*   Updated: 2021/05/18 16:46:37 by avan-ber      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_one.h"
+
+unsigned long	get_time_ms()
+{
+	struct timeval	time;
+	unsigned long	time_ms;
+
+	gettimeofday(&time, NULL);
+	time_ms = time.tv_sec * 1000 +  time.tv_usec / 1000;
+	return (time_ms);
+}
+
+void	ft_sleep(unsigned int time_to_pass)
+{
+	unsigned long	time_ms;
+	unsigned long	update_ms;
+
+	time_ms = get_time_ms();
+	while(1)
+	{
+		usleep(100);
+		update_ms = get_time_ms();
+		if (update_ms - time_ms >= time_to_pass)
+			return ;
+	}
+	(void)time_to_pass;
+}
 
 int				ft_isdigit(char c)
 {

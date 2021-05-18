@@ -5,8 +5,8 @@
 /*                                                     +:+                    */
 /*   By: avan-ber <avan-ber@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2021/05/12 18:19:29 by avan-ber      #+#    #+#                 */
-/*   Updated: 2021/05/17 19:31:01 by avan-ber      ########   odam.nl         */
+/*   Created: 2021/05/18 13:03:59 by avan-ber      #+#    #+#                 */
+/*   Updated: 2021/05/18 19:17:49 by avan-ber      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,6 @@
 # include <sys/time.h>
 # include <stdlib.h>
 
-typedef struct			s_philo
-{
-	unsigned int		number;
-	unsigned int		left_fork;
-	unsigned int		right_fork;
-}						t_philo;
-
-
 typedef struct			s_philo_info
 {
 	unsigned int		philo_amount;
@@ -37,33 +29,63 @@ typedef struct			s_philo_info
 	unsigned int		t_sleep;
 	bool				must_eat;
 	unsigned int		nb_must_eat;
-	t_philo				philo;
 	pthread_mutex_t*	forks;
 	bool				philo_died;
 	pthread_mutex_t		m_philo_died;
+	pthread_mutex_t		print;
 	unsigned long		time;
-	unsigned long		time_last_eat;
 }						t_philo_info;
 
+typedef struct			s_philo
+{
+	unsigned int		number;
+	unsigned int		left_fork;
+	unsigned int		right_fork;
+	unsigned long		time_last_eat;
+	pthread_t			thread_id;
+    t_philo_info*		info;
+}						t_philo;
 
 /*
 ** utils
 */
 
+void			ft_sleep(unsigned int time_to_pass);
+unsigned long	get_time_ms();
 int				ft_isdigit(char c);
-unsigned int    ft_atoui(char *str);
-int             ft_isnumber(char* str);
+unsigned int	ft_atoui(char *str);
+int				ft_isnumber(char* str);
 
 /*
-** error messages
+** parse functions
+*/
+int parse_input(int ac, char **av, t_philo_info* info);
+
+/*
+** error messages functions
 */
 
-int error_argument_amount();
-int error_argument_numbers(int index, char* arg);
-int error_philo_amount();
-int error_time_to_low(char* time);
-int error_amount_to_eat_zero();
-int error_malloc_failed();
-int error_mutex_failed();
+int	error_argument_amount();
+int	error_argument_numbers(int index, char* arg);
+int	error_philo_amount();
+int	error_time_to_low(char* time);
+int	error_amount_to_eat_zero();
+int	error_malloc_failed();
+int	error_mutex_failed();
 
+/*
+** mutex functions
+*/
+void	close_all_forks(t_philo_info* info, int index);
+void    close_all_mutex(t_philo_info* info);
+int 	set_mutex(t_philo_info *info);
+
+/*
+** philo functions
+*/
+int		is_philo_dead(t_philo *philo);
+void	write_philo_message(t_philo *philo, char *msg, bool dead);
+void	*philo_being_philo(void *varg);
+int		philo_check(t_philo* philo);
+int		create_threads(t_philo_info* info);
 #endif

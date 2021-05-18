@@ -6,7 +6,7 @@
 #    By: avan-ber <avan-ber@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2021/05/12 18:15:03 by avan-ber      #+#    #+#                  #
-#    Updated: 2021/05/13 14:11:47 by avan-ber      ########   odam.nl          #
+#    Updated: 2021/05/18 16:01:22 by avan-ber      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,12 @@ CLAGS = -Wall -Werror -Wextra
 
 SRCS =	main.c \
 		utils.c \
-		error_messages.c
+		error_messages.c \
+		mutex.c \
+		parser.c \
+		philo_check.c \
+		philo_init.c \
+		philo_living.c
 
 all:$(NAME)
 
@@ -29,6 +34,6 @@ clean:
 
 fclean: clean
 
-re: fclean alls
+re: fclean all
 
 .PHONY: all clean fclean re
