@@ -6,7 +6,7 @@
 /*   By: avan-ber <avan-ber@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/05/18 13:06:42 by avan-ber      #+#    #+#                 */
-/*   Updated: 2021/05/26 14:02:22 by avan-ber      ########   odam.nl         */
+/*   Updated: 2021/05/26 15:14:45 by avan-ber      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include "philo_one.h"
+#include "philo_two.h"
 
 unsigned long	get_time_ms(void)
 {
@@ -69,4 +69,11 @@ unsigned int	ft_atoui(char *str)
 		i++;
 	}
 	return (ret);
+}
+
+void	close_all_semaphores(t_philo_info *info)
+{
+	sem_close(info->forks);
+	sem_close(info->s_philo_died);
+	sem_close(info->print);
 }

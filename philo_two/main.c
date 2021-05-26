@@ -6,18 +6,36 @@
 /*   By: avan-ber <avan-ber@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/05/18 13:06:13 by avan-ber      #+#    #+#                 */
-/*   Updated: 2021/05/26 14:19:27 by avan-ber      ########   odam.nl         */
+/*   Updated: 2021/05/26 15:14:02 by avan-ber      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo_one.h"
+#include <semaphore.h>
+#include "philo_two.h"
 
 static int	philo_info_init(int ac, char **av, t_philo_info *info)
 {
 	if (parse_input(ac, av, info) == 1)
 		return (1);
-	if (set_mutex(info) == 1)
+	sem_unlink("fork-semaphore");
+	info->forks = sem_open("fork-semaphore", O_CREAT, 0644, info->philo_amount);
+	if (info->forks == SEM_FAILED)
 		return (1);
+	sem_unlink("death-semaphore");
+	info->s_philo_died = sem_open("death-semaphore", O_CREAT, 0644, 1);
+	if (info->s_philo_died == SEM_FAILED)
+	{
+		sem_close(info->forks);
+		return (1);
+	}
+	sem_unlink("print-semaphore");
+	info->s_philo_died = sem_open("print-semaphore", O_CREAT, 0644, 1);
+	if (info->s_philo_died == SEM_FAILED)
+	{
+		sem_close(info->forks);
+		sem_close(info->s_philo_died);
+		return (1);
+	}
 	info->philo_died = false;
 	info->time = get_time_ms();
 	return (0);

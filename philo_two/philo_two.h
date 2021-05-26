@@ -1,20 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   philo_one.h                                        :+:    :+:            */
+/*   philo_two.h                                        :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: avan-ber <avan-ber@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/05/18 13:03:59 by avan-ber      #+#    #+#                 */
-/*   Updated: 2021/05/26 15:01:58 by avan-ber      ########   odam.nl         */
+/*   Updated: 2021/05/26 15:14:41 by avan-ber      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILO_ONE_H
-# define PHILO_ONE_H
+#ifndef PHILO_TWO_H
+# define PHILO_TWO_H
 
 # include <stdbool.h>
 # include <ctype.h>
+# include <semaphore.h>
 # include <pthread.h>
 
 typedef struct s_philo_info
@@ -25,18 +26,16 @@ typedef struct s_philo_info
 	unsigned int	t_sleep;
 	bool			must_eat;
 	unsigned int	nb_must_eat;
-	pthread_mutex_t	*forks;
+	sem_t			*forks;
 	bool			philo_died;
-	pthread_mutex_t	m_philo_died;
-	pthread_mutex_t	print;
+	sem_t			*s_philo_died;
+	sem_t			*print;
 	unsigned long	time;
 }					t_philo_info;
 
 typedef struct s_philo
 {
 	unsigned int	number;
-	unsigned int	left_fork;
-	unsigned int	right_fork;
 	unsigned long	time_last_eat;
 	pthread_t		thread_id;
 	bool			done_eating;
@@ -64,18 +63,12 @@ void			ft_sleep(unsigned int time_to_pass);
 unsigned long	get_time_ms(void);
 unsigned int	ft_atoui(char *str);
 int				ft_isnumber(char *str);
+void			close_all_semaphores(t_philo_info *info);
 
 /*
 ** parse functions +-----------------------------------------------------------+
 */
 int				parse_input(int ac, char **av, t_philo_info *info);
-
-/*
-** mutex functions +-----------------------------------------------------------+
-*/
-void			close_all_forks(t_philo_info *info, int index);
-void			close_all_mutex(t_philo_info *info);
-int				set_mutex(t_philo_info *info);
 
 /*
 ** philo functions +-----------------------------------------------------------+

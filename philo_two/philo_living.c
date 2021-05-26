@@ -6,26 +6,26 @@
 /*   By: avan-ber <avan-ber@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/05/18 15:54:27 by avan-ber      #+#    #+#                 */
-/*   Updated: 2021/05/26 11:32:28 by avan-ber      ########   odam.nl         */
+/*   Updated: 2021/05/26 15:14:48 by avan-ber      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <unistd.h>
-#include <pthread.h>
-#include "philo_one.h"
+#include <semaphore.h>
+##include "philo_two.h"
 
 void	write_philo_message(t_philo *philo, char *msg, bool dead)
 {
 	unsigned long	time_ms;
 
-	pthread_mutex_lock(&philo->info->print);
+	sem_wait(philo->info->print);
 	time_ms = get_time_ms();
 	if (dead == false)
 	{
 		if (philo_check(philo) == 1)
 		{
-			pthread_mutex_unlock(&philo->info->print);
+			sem_post(philo->info->print);
 			return ;
 		}
 	}
@@ -35,33 +35,33 @@ void	write_philo_message(t_philo *philo, char *msg, bool dead)
 	else
 		printf("time[%ld]\t%i %s\n", time_ms - philo->info->time, \
 															philo->number, msg);
-	pthread_mutex_unlock(&philo->info->print);
+	sem_post(philo->info->print);
 }
 
 static int	philo_eat(t_philo *philo)
 {
 	if (philo_check(philo) == 1)
 		return (1);
-	pthread_mutex_lock(&philo->info->forks[philo->left_fork]);
+	sem_wait(philo->info->forks);
 	if (philo_check(philo) == 1)
 	{
-		pthread_mutex_unlock(&philo->info->forks[philo->left_fork]);
+		sem_post(philo->info->forks);
 		return (1);
 	}
 	write_philo_message(philo, "has taken a fork", false);
-	pthread_mutex_lock(&philo->info->forks[philo->right_fork]);
+	sem_wait(philo->info->forks);
 	if (philo_check(philo) == 1)
 	{
-		pthread_mutex_unlock(&philo->info->forks[philo->left_fork]);
-		pthread_mutex_unlock(&philo->info->forks[philo->right_fork]);
+		sem_post(philo->info->forks);
+		sem_post(philo->info->forks);
 		return (1);
 	}
 	write_philo_message(philo, "has taken a fork", false);
 	write_philo_message(philo, "is eating", false);
 	philo->time_last_eat = get_time_ms();
 	ft_sleep(philo->info->t_eat);
-	pthread_mutex_unlock(&philo->info->forks[philo->left_fork]);
-	pthread_mutex_unlock(&philo->info->forks[philo->right_fork]);
+	sem_post(philo->info->forks);
+	sem_post(philo->info->forks);
 	return (0);
 }
 

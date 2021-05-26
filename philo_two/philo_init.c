@@ -6,22 +6,18 @@
 /*   By: avan-ber <avan-ber@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/05/18 15:31:30 by avan-ber      #+#    #+#                 */
-/*   Updated: 2021/05/26 14:55:27 by avan-ber      ########   odam.nl         */
+/*   Updated: 2021/05/26 15:14:49 by avan-ber      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <pthread.h>
-#include "philo_one.h"
+#include <stdio.h>
+#include "philo_two.h"
 
 static void	set_philo_details(t_philo *philo, int philo_id, t_philo_info *info)
 {
 	philo->number = philo_id;
-	if (philo_id == info->philo_amount)
-		philo->right_fork = 0;
-	else
-		philo->right_fork = philo_id;
-	philo->left_fork = philo_id - 1;
 	philo->time_last_eat = get_time_ms();
 	philo->done_eating = false;
 	philo->info = info;
@@ -35,7 +31,7 @@ static t_philo	*create_philo(t_philo_info *info)
 	philo = malloc(sizeof(t_philo) * info->philo_amount);
 	if (philo == NULL)
 	{
-		close_all_mutex(info);
+		close_all_semaphores(info);
 		error_malloc_failed();
 		return (NULL);
 	}
@@ -79,9 +75,9 @@ int	create_threads(t_philo_info *info)
 	if (philo == NULL)
 		return (1);
 	while (i < info->philo_amount)
-	{		
-		if (pthread_create(&(philo[i].thread_id), NULL, philo_being_philo, \
-																&philo[i]) == 0)
+	{	
+		printf("[%d]\n", i);
+		if (pthread_create(&(philo[i].thread_id), NULL, philo_being_philo, &philo[i]) == 0)
 			return (error_threads_failed(philo));
 		i++;
 	}
@@ -92,7 +88,7 @@ int	create_threads(t_philo_info *info)
 		pthread_join(philo[i].thread_id, NULL);
 		i++;
 	}
-	close_all_mutex(info);
+	close_all_semaphores(info);
 	free(philo);
 	return (0);
 }

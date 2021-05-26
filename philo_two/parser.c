@@ -6,11 +6,11 @@
 /*   By: avan-ber <avan-ber@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/05/18 15:42:29 by avan-ber      #+#    #+#                 */
-/*   Updated: 2021/05/26 11:19:37 by avan-ber      ########   odam.nl         */
+/*   Updated: 2021/05/26 15:14:51 by avan-ber      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo_one.h"
+#include "philo_two.h"
 
 static int	are_all_numbers(char **numbers, int amount)
 {
