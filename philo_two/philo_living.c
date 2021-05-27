@@ -6,14 +6,14 @@
 /*   By: avan-ber <avan-ber@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/05/18 15:54:27 by avan-ber      #+#    #+#                 */
-/*   Updated: 2021/05/26 15:14:48 by avan-ber      ########   odam.nl         */
+/*   Updated: 2021/05/27 08:19:31 by avan-ber      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <unistd.h>
 #include <semaphore.h>
-##include "philo_two.h"
+#include "philo_two.h"
 
 void	write_philo_message(t_philo *philo, char *msg, bool dead)
 {

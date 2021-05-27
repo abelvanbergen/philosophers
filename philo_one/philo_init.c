@@ -6,7 +6,7 @@
 /*   By: avan-ber <avan-ber@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/05/18 15:31:30 by avan-ber      #+#    #+#                 */
-/*   Updated: 2021/05/26 14:55:27 by avan-ber      ########   odam.nl         */
+/*   Updated: 2021/05/27 08:17:15 by avan-ber      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ int	create_threads(t_philo_info *info)
 	while (i < info->philo_amount)
 	{		
 		if (pthread_create(&(philo[i].thread_id), NULL, philo_being_philo, \
-																&philo[i]) == 0)
+																&philo[i]) != 0)
 			return (error_threads_failed(philo));
 		i++;
 	}

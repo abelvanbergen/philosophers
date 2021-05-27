@@ -6,7 +6,7 @@
 /*   By: avan-ber <avan-ber@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/05/18 13:03:59 by avan-ber      #+#    #+#                 */
-/*   Updated: 2021/05/26 15:01:58 by avan-ber      ########   odam.nl         */
+/*   Updated: 2021/05/27 08:34:57 by avan-ber      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ int				parse_input(int ac, char **av, t_philo_info *info);
 ** mutex functions +-----------------------------------------------------------+
 */
 void			close_all_forks(t_philo_info *info, int index);
+void			close_forks_death_mutex(t_philo_info *info);
 void			close_all_mutex(t_philo_info *info);
 int				set_mutex(t_philo_info *info);
 

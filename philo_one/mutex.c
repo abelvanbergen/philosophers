@@ -6,7 +6,7 @@
 /*   By: avan-ber <avan-ber@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/05/18 15:09:16 by avan-ber      #+#    #+#                 */
-/*   Updated: 2021/05/26 13:54:47 by avan-ber      ########   odam.nl         */
+/*   Updated: 2021/05/27 08:34:15 by avan-ber      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,13 +52,7 @@ int	set_mutex(t_philo_info *info)
 		return (1);
 	if (pthread_mutex_init(&info->print, NULL) != 0)
 	{
-		close_all_forks(info, info->philo_amount);
-		free(info->forks);
-		if (pthread_mutex_destroy(&info->m_philo_died) != 0)
-		{
-			pthread_mutex_unlock(&info->m_philo_died);
-			pthread_mutex_destroy(&info->m_philo_died);
-		}
+		close_forks_death_mutex(info);
 		return (error_mutex_failed());
 	}
 	return (0);

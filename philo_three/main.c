@@ -5,18 +5,17 @@
 /*                                                     +:+                    */
 /*   By: avan-ber <avan-ber@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2021/05/18 13:06:13 by avan-ber      #+#    #+#                 */
-/*   Updated: 2021/05/27 08:26:09 by avan-ber      ########   odam.nl         */
+/*   Created: 2021/05/27 09:46:56 by avan-ber      #+#    #+#                 */
+/*   Updated: 2021/05/27 14:05:53 by avan-ber      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <semaphore.h>
-#include "philo_two.h"
+#include "philo_three.h"
 
 static int	philo_info_init(int ac, char **av, t_philo_info *info)
 {
-	if (parse_input(ac, av, info) == 1)
-		return (1);
+	parse_input(ac, av, info);
 	sem_unlink("fork-semaphore");
 	info->forks = sem_open("fork-semaphore", O_CREAT, 0644, info->philo_amount);
 	if (info->forks == SEM_FAILED)
@@ -47,12 +46,10 @@ int	main(int ac, char **av)
 
 	if (ac == 5 || ac == 6)
 	{
-		if (philo_info_init(ac, av, &info) == 1)
-			return (1);
-		if (create_threads(&info) == 1)
-			return (1);
+		philo_info_init(ac, av, &info);
+
 	}
 	else
-		return (error_argument_amount());
+		error_argument_amount();
 	return (0);
 }

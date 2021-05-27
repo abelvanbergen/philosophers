@@ -6,7 +6,7 @@
 /*   By: avan-ber <avan-ber@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/05/18 13:03:59 by avan-ber      #+#    #+#                 */
-/*   Updated: 2021/05/26 15:14:41 by avan-ber      ########   odam.nl         */
+/*   Updated: 2021/05/27 09:48:05 by avan-ber      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,10 @@
 # include <ctype.h>
 # include <semaphore.h>
 # include <pthread.h>
+
+/*
+** philosophers structs +------------------------------------------------------+
+*/
 
 typedef struct s_philo_info
 {
