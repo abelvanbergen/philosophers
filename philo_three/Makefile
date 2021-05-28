@@ -6,7 +6,7 @@
 #    By: avan-ber <avan-ber@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2021/05/27 09:22:07 by avan-ber      #+#    #+#                  #
-#    Updated: 2021/05/27 09:22:30 by avan-ber      ########   odam.nl          #
+#    Updated: 2021/05/28 13:59:00 by avan-ber      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,8 +16,12 @@ CC = gcc
 CLAGS = -Wall -Werror -Wextra
 
 OBJ_DIR = objs
-_OBJ_FILES =	main
-
+_OBJ_FILES =	main \
+				error_messages_1 \
+				parser \
+				philo_init \
+				philo_living \
+				utils
 
 OBJ_FILES = $(addsuffix .o, $(addprefix $(OBJ_DIR)/,$(_OBJ_FILES)))
 

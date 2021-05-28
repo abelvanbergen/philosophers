@@ -6,7 +6,7 @@
 /*   By: avan-ber <avan-ber@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/05/26 09:28:27 by avan-ber      #+#    #+#                 */
-/*   Updated: 2021/05/26 15:13:53 by avan-ber      ########   odam.nl         */
+/*   Updated: 2021/05/28 09:14:52 by avan-ber      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,12 @@ int	error_semaphore_failed(void)
 {
 	printf("Error -----\n");
 	printf("Semaphore failed\n");
+	return (1);
+}
+
+int	error_argument_numbers(int index, char *arg)
+{
+	printf("Error -----\n");
+	printf("Argument %i is a empty string\n", index);
 	return (1);
 }

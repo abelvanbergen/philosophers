@@ -6,7 +6,7 @@
 /*   By: avan-ber <avan-ber@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/05/18 13:03:59 by avan-ber      #+#    #+#                 */
-/*   Updated: 2021/05/27 08:34:57 by avan-ber      ########   odam.nl         */
+/*   Updated: 2021/05/28 09:17:44 by avan-ber      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ int				error_amount_to_eat_zero(void);
 int				error_malloc_failed(void);
 int				error_threads_failed(t_philo *philo);
 int				error_mutex_failed(void);
+int				error_argument_numbers(int index);
 
 /*
 ** utils +---------------------------------------------------------------------+

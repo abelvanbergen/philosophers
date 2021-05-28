@@ -1,16 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   eror_messages_1.c                                  :+:    :+:            */
+/*   error_messages_1.c                                 :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: avan-ber <avan-ber@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/05/27 09:49:29 by avan-ber      #+#    #+#                 */
-/*   Updated: 2021/05/27 09:50:17 by avan-ber      ########   odam.nl         */
+/*   Updated: 2021/05/28 14:37:00 by avan-ber      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
+#include <stdlib.h>
 
 void	error_argument_amount(void)
 {
@@ -50,5 +51,33 @@ void	error_amount_to_eat_zero(void)
 	printf("Error -----\n");
 	printf("You need to eat at least once.");
 	printf("You can't think on a emty stomach\n");
+	exit(1);
+}
+
+void	error_argument_empty_string(int index)
+{
+	printf("Error -----\n");
+	printf("Argument %i is a empty string\n", index);
+	exit(1);
+}
+
+void	error_threads_failed(void)
+{
+	printf("Error -----\n");
+	printf("The creation of threads failed\n");
+	exit(1);
+}
+
+void	error_malloc_failed(void)
+{
+	printf("Error -----\n");
+	printf("Malloc failed\n");
+	exit(1);
+}
+
+void	error_fork_failed(void)
+{
+	printf("Error -----\n");
+	printf("fork failed\n");
 	exit(1);
 }

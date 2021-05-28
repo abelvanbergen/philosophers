@@ -6,11 +6,21 @@
 /*   By: avan-ber <avan-ber@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/05/18 15:42:29 by avan-ber      #+#    #+#                 */
-/*   Updated: 2021/05/26 15:14:51 by avan-ber      ########   odam.nl         */
+/*   Updated: 2021/05/28 14:07:12 by avan-ber      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_two.h"
+
+static int ft_strlen(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i] != '\0')
+		i++;
+	return (i);
+}
 
 static int	are_all_numbers(char **numbers, int amount)
 {
@@ -21,6 +31,8 @@ static int	are_all_numbers(char **numbers, int amount)
 	{
 		if (ft_isnumber(numbers[i]) == 0)
 			return (error_argument_numbers(i, numbers[i]));
+		if (ft_strlen(numbers[i]) == 0)
+			return (error_argument_empty_string(i));
 		i++;
 	}
 	return (0);

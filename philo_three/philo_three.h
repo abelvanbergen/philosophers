@@ -6,7 +6,7 @@
 /*   By: avan-ber <avan-ber@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/05/27 09:26:57 by avan-ber      #+#    #+#                 */
-/*   Updated: 2021/05/27 14:06:23 by avan-ber      ########   odam.nl         */
+/*   Updated: 2021/05/28 14:37:10 by avan-ber      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,10 @@
 # define PHILO_THREE_H
 
 # include <stdbool.h>
+# include <unistd.h>
+# include <semaphore.h>
 
-typedef struct s_philo_info
+typedef struct s_parse
 {
 	unsigned int	philo_amount;
 	unsigned int	t_die;
@@ -23,30 +25,57 @@ typedef struct s_philo_info
 	unsigned int	t_sleep;
 	bool			must_eat;
 	unsigned int	nb_must_eat;
-	sem_t			*forks;
-	bool			philo_died;
-	sem_t			*s_philo_died;
-	sem_t			*print;
-	unsigned long	time;
-}					t_philo_info;
+	pid_t			*children;
+}					t_parse;
 
 typedef struct s_philo
 {
+	t_parse			parse;
+	sem_t			*forks;
+	sem_t			*s_philo_died;
+	bool			philo_died;
+	sem_t			*print;
+	unsigned long	time;
 	unsigned int	number;
-	unsigned long	time_last_eat;
 	pthread_t		monitor;
+	unsigned long	time_last_eat;
 	bool			done_eating;
-	t_philo_info	*info;
+	pid_t			*children;
 }					t_philo;
 
 /*
 ** error messages functions +--------------------------------------------------+
 */
 
-void	error_argument_amount(void);
-void	error_argument_numbers(int index, char *arg);
-void	error_philo_amount(int amount);
-void	error_time_to_low(char *time);
-void	error_amount_to_eat_zero(void);
+void			error_argument_amount(void);
+void			error_argument_numbers(int index, char *arg);
+void			error_philo_amount(int amount);
+void			error_time_to_low(char *time);
+void			error_amount_to_eat_zero(void);
+void			error_argument_empty_string(int index);
+int				error_threads_failed(void);
+void			error_malloc_failed(void);
+void			error_fork_failed(void);
+
+/*
+** parse functions +----------------------------------------------------+
+*/
+int				parse_input(int ac, char **av, t_parse *parse);
+
+/*
+** philosophers functions +----------------------------------------------------+
+*/
+
+void			philo_init(t_philo *info);
+void			philo_being_philo(t_philo *info);
+
+/*
+** utils +---------------------------------------------------------------------+
+*/
+unsigned long	get_time_ms(void);
+void			ft_sleep(unsigned int time_to_pass);
+int				ft_isnumber(char *str);
+unsigned int	ft_atoui(char *str);
+
 
 #endif

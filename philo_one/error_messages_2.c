@@ -6,7 +6,7 @@
 /*   By: avan-ber <avan-ber@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/05/26 09:28:27 by avan-ber      #+#    #+#                 */
-/*   Updated: 2021/05/26 14:09:47 by avan-ber      ########   odam.nl         */
+/*   Updated: 2021/05/28 09:17:30 by avan-ber      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,12 @@ int	error_mutex_failed(void)
 {
 	printf("Error -----\n");
 	printf("Mutex failed\n");
+	return (1);
+}
+
+int	error_argument_numbers(int index)
+{
+	printf("Error -----\n");
+	printf("Argument %i is a empty string\n", index);
 	return (1);
 }
