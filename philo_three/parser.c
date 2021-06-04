@@ -6,13 +6,13 @@
 /*   By: avan-ber <avan-ber@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/05/27 09:47:10 by avan-ber      #+#    #+#                 */
-/*   Updated: 2021/05/28 14:23:13 by avan-ber      ########   odam.nl         */
+/*   Updated: 2021/06/04 11:11:01 by avan-ber      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_three.h"
 
-static int ft_strlen(char *str)
+static int	ft_strlen(char *str)
 {
 	int	i;
 

@@ -6,7 +6,7 @@
 #    By: avan-ber <avan-ber@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2021/05/27 09:22:07 by avan-ber      #+#    #+#                  #
-#    Updated: 2021/05/28 13:59:00 by avan-ber      ########   odam.nl          #
+#    Updated: 2021/06/03 13:10:13 by avan-ber      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ CLAGS = -Wall -Werror -Wextra
 OBJ_DIR = objs
 _OBJ_FILES =	main \
 				error_messages_1 \
+				error_messages_2 \
 				parser \
 				philo_init \
 				philo_living \

@@ -6,7 +6,7 @@
 /*   By: avan-ber <avan-ber@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/05/27 09:26:57 by avan-ber      #+#    #+#                 */
-/*   Updated: 2021/05/28 14:37:10 by avan-ber      ########   odam.nl         */
+/*   Updated: 2021/06/04 11:12:59 by avan-ber      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,12 @@ typedef struct s_parse
 	unsigned int	t_sleep;
 	bool			must_eat;
 	unsigned int	nb_must_eat;
-	pid_t			*children;
 }					t_parse;
 
 typedef struct s_philo
 {
 	t_parse			parse;
 	sem_t			*forks;
-	sem_t			*s_philo_died;
 	bool			philo_died;
 	sem_t			*print;
 	unsigned long	time;
@@ -76,6 +74,5 @@ unsigned long	get_time_ms(void);
 void			ft_sleep(unsigned int time_to_pass);
 int				ft_isnumber(char *str);
 unsigned int	ft_atoui(char *str);
-
 
 #endif
